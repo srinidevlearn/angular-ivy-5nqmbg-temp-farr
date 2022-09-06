@@ -1,0 +1,23 @@
+<form [formGroup]="userForm">
+  <input type="text" formControlName="name" />
+  <br />
+  <button type="button" (click)="addNewAddressGroup()">Add New Address</button>
+  <br />
+  <fieldset>
+    <legend>Addresses</legend>
+    <div
+      style="border:1px solid blue;margin-bottom:10px;padding:10px"
+      *ngFor="let address of userAddresses?.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <span style="color:red">Address Set : {{ i + 1 }}</span>
+      <hr />
+      <div>
+        street <input formControlName="street" />
+        <small>{{ skillf(i) | json }}</small>
+      </div>
+      <div>city <input formControlName="city" /></div>
+      <button (click)="deleteAddressGroup(i)">Delete</button>
+    </div>
+  </fieldset>
+</form>
